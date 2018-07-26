@@ -44,6 +44,19 @@ class VagueBooleanTests {
 	}	
 
 	@Test
+	def void testEquals() {
+		assertTrue(FALSE==FALSE)
+		assertFalse(FALSE==UNKNOWN)
+		assertFalse(FALSE==TRUE)
+		assertFalse(UNKNOWN==FALSE)
+		assertTrue(UNKNOWN==UNKNOWN)
+		assertFalse(UNKNOWN==TRUE)
+		assertFalse(TRUE==FALSE)
+		assertFalse(TRUE==UNKNOWN)
+		assertTrue(TRUE==TRUE)
+	}
+
+	@Test
 	def void testVagueTypeAPI() {
 		assertTrue(FALSE.isConcrete)
 		assertFalse(UNKNOWN.isConcrete)
@@ -52,16 +65,6 @@ class VagueBooleanTests {
 		assertFalse(FALSE.isUndefined)
 		assertTrue(UNKNOWN.isUndefined)
 		assertFalse(TRUE.isUndefined)
-
-		assertTrue(FALSE.isEqual(FALSE))
-		assertFalse(FALSE.isEqual(UNKNOWN))
-		assertFalse(FALSE.isEqual(TRUE))
-		assertFalse(UNKNOWN.isEqual(FALSE))
-		assertTrue(UNKNOWN.isEqual(UNKNOWN))
-		assertFalse(UNKNOWN.isEqual(TRUE))
-		assertFalse(TRUE.isEqual(FALSE))
-		assertFalse(TRUE.isEqual(UNKNOWN))
-		assertTrue(TRUE.isEqual(TRUE))
 
 		assertEquals(TRUE, FALSE.isEqualAbstract(FALSE))
 		assertEquals(UNKNOWN, FALSE.isEqualAbstract(UNKNOWN))

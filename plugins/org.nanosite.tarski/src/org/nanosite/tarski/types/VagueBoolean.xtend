@@ -40,6 +40,20 @@ class VagueBoolean implements IBooleanLattice {
 		this.aspectTrue = value
 	}
 	
+	override boolean equals(Object other) {
+		if (other===null)
+			return false
+		if (other instanceof VagueBoolean) {
+			aspectFalse === other.aspectFalse && aspectTrue === other.aspectTrue
+		} else {
+			true
+		}
+	}
+	
+	override int hashCode() {
+		throw new RuntimeException("NIY - it is not clear how to hash with abstract values")
+	}
+
 //	override int getTypeId() {
 //		// TODO: this should be defined centrally
 //		77
@@ -58,17 +72,9 @@ class VagueBoolean implements IBooleanLattice {
 		isFalse() || isTrue()
 	}
 
-	override boolean isEqual(ILatticeType other) {
-		if (other instanceof VagueBoolean) {
-			aspectFalse === other.aspectFalse && aspectTrue === other.aspectTrue
-		} else {
-			throw new RuntimeException("Invalid argument type")
-		}
-	}
-
 	override VagueBoolean isEqualAbstract(ILatticeType other) {
 		if (other instanceof VagueBoolean) {
-			if (isEqual(other)) {
+			if (this==other) {
 				return TRUE
 			}
 			if (aspectFalse === other.aspectFalse || aspectTrue === other.aspectTrue) {

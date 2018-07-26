@@ -51,11 +51,6 @@ interface ILatticeType {
 	def <T extends ILatticeType> T lub(ILatticeType other)
 
 	/**
-	 * Check for concrete equality of lattice values.</p>
-	 */
-	def boolean isEqual(ILatticeType other)
-
-	/**
 	 * Check for abstract equality.</p>
 	 */
 	def <B extends IBooleanLattice> B isEqualAbstract(ILatticeType other)
