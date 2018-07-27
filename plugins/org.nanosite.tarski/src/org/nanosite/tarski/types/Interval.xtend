@@ -96,15 +96,15 @@ class Interval {
 
 	override toString() {
 		if (a === b) {
-			'''Â«toString(a)Â»'''
+			'''«toString(a)»'''
 		} else {
-			'''[Â«toString(a)Â»..Â«toString(b)Â»]'''
+			'''[«toString(a)»..«toString(b)»]'''
 		}
 	}
 
 	def private toString(long i) {
 		if(i === NEG_INF) return "-INF"
 		if(i === POS_INF) return "INF"
-		return '''Â«iÂ»'''
+		return '''«i»'''
 	}
 }
