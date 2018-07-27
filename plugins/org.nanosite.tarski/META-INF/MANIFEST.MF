@@ -9,4 +9,8 @@ Require-Bundle: com.google.guava,
  org.eclipse.xtext.xbase.lib,
  org.eclipse.xtend.lib,
  org.eclipse.xtend.lib.macro
-Export-Package: org.nanosite.tarski.types
+Export-Package: org.nanosite.tarski.psm.checker,
+ org.nanosite.tarski.psm.fsmapi,
+ org.nanosite.tarski.psm.psmapi,
+ org.nanosite.tarski.psm.viewer,
+ org.nanosite.tarski.types
