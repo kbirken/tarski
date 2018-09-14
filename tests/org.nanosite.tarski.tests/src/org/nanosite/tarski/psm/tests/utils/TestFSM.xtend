@@ -102,7 +102,10 @@ class TestFSM implements IExecutionFSM {
 		}
 
 		override toString() {
-			'''Tr_to_«to.name»(«trigger»)'''
+			if (to!==null)
+				'''Tr_to_«to.name»(«trigger»)'''
+			else
+				'''Tr_ignore(«trigger»)'''
 		}
 	}
 	

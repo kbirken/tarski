@@ -61,7 +61,12 @@ class ExecutionFSMDotGenerator {
 				
 				«FOR s : fsm.states»
 					«FOR tr : s.outgoing»
+						«IF tr.to!==null»
 						«s.id» -> «tr.to.id» [«tr.genTrDetails»]
+						«ELSE»
+						I«nID=nID+1» [shape=plaintext; label="ignore"]
+						«s.id» -> I«nID» [«tr.genTrDetails»]
+						«ENDIF»
 					«ENDFOR»
 					«IF results!==null»
 						«s.genProposals»

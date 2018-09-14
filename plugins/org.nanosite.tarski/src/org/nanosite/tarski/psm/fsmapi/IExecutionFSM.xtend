@@ -69,7 +69,10 @@ interface IExecutionFSM {
 		def ITrigger getTrigger()
 		
 		/**
-		 * The target state of this transition.
+		 * The target state of this transition.</p>
+		 * 
+		 * If this method returns null, then the transition will consume the triggered
+		 * event, but will ignore it.</p>
 		 */
 		def IState getTo()
 

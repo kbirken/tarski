@@ -92,26 +92,31 @@ class ExecFSMSemantics {
 			for(ev : handled)
 				msgList.add(new Pair(ev, trStep))
 			
-			// now exit action of the source state
-			if (source.exitAction!==null) {
-				val stateStep = new StateStep(source)
-				for(ev : source.exitAction.willSend)
-					msgList.add(new Pair(ev, stateStep))
-			}
-			
-			// now action of triggered transition
-			if (triggered.action!==null) {
-				for(ev : triggered.action.willSend)
-					msgList.add(new Pair(ev, trStep))
-			}
-			
-			if (! stopAfterFirstTransition) {
-				// finally entry action of target state
-				val target = triggered.to
-				if (target.entryAction!==null) {
-					val stateStep = new StateStep(target)
-					for(ev : target.entryAction.willSend)
+			if (triggered.to===null) {
+				// no target state, this is an "ignore"-transition
+				// just consume the trigger event(s), no entry/exit action, no transition action
+			} else {
+				// now exit action of the source state
+				if (source.exitAction!==null) {
+					val stateStep = new StateStep(source)
+					for(ev : source.exitAction.willSend)
 						msgList.add(new Pair(ev, stateStep))
+				}
+				
+				// now action of triggered transition
+				if (triggered.action!==null) {
+					for(ev : triggered.action.willSend)
+						msgList.add(new Pair(ev, trStep))
+				}
+				
+				if (! stopAfterFirstTransition) {
+					// finally entry action of target state
+					val target = triggered.to
+					if (target.entryAction!==null) {
+						val stateStep = new StateStep(target)
+						for(ev : target.entryAction.willSend)
+							msgList.add(new Pair(ev, stateStep))
+					}
 				}
 			}
 			

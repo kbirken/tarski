@@ -113,21 +113,27 @@ class SemanticsChecker {
 		 * 3. Add and merge rules on target node with the present rule
 		 */
 		for(tr : state.outgoing) {
-			val target = tr.to
 			val trigger = if (tr.trigger!==null) tr.trigger.toString else "unknown trigger"
-			println("  transition to '" + target.name + "' (" + trigger + ")")
-
+			val target = tr.to
+			if (target!==null)
+				println("  transition to '" + target.name + "' (" + trigger + ")")
+			else
+				println("  ignore transition (" + trigger + ")")
+			
 			val tempRule = activePortStates.get(state).createCopy
 			val tempRuleTr = activePortStates.get(state).createCopy
 
-			// update ActivePortState of target state
+ 			// update ActivePortState of target state
 			val eventSeq = state.getTriggeredEventChain(tr, false).map[key]
 			println("    eventSeq: " + eventSeq.map[it.toString].join(', '))
-			println("      rule pre:  " + tempRule)
-			tempRule.consumeEvents(eventSeq, false)
-			println("      rule post: " + tempRule)
-			addAndMergePortStates(target, tempRule)
-			println("      final rule of '" + state.name + "': " + activePortStates.get(state))
+			if (target!==null) {
+				// update target state only if this is not an ignore-transition
+				println("      rule pre:  " + tempRule)
+				tempRule.consumeEvents(eventSeq, false)
+				println("      rule post: " + tempRule)
+				addAndMergePortStates(target, tempRule)
+				println("      final rule of '" + state.name + "': " + activePortStates.get(state))
+			}
 
 			// update ActivePortState of triggered transition
 			val eventSeqTr = state.getTriggeredEventChain(tr, true).map[key]
