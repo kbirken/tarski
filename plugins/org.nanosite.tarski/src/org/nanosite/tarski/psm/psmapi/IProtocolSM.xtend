@@ -153,5 +153,5 @@ interface IProtocolSM {
 	 * 
 	 * The initial state must be included here.
 	 */
-	def <T extends IPSMState> Collection<T> getStates()
+	def Collection<IPSMState> getStates()
 }
