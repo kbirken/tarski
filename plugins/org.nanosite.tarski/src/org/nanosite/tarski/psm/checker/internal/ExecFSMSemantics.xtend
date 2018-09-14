@@ -94,7 +94,11 @@ class ExecFSMSemantics {
 			
 			if (triggered.to===null) {
 				// no target state, this is an "ignore"-transition
-				// just consume the trigger event(s), no entry/exit action, no transition action
+				// just consume the trigger event(s), no entry/exit action, only transition action (if any)
+				if (triggered.action!==null) {
+					for(ev : triggered.action.willSend)
+						msgList.add(new Pair(ev, trStep))
+				}
 			} else {
 				// now exit action of the source state
 				if (source.exitAction!==null) {

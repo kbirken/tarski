@@ -73,6 +73,9 @@ interface IExecutionFSM {
 		 * 
 		 * If this method returns null, then the transition will consume the triggered
 		 * event, but will ignore it.</p>
+		 * 
+		 * Note: If the transition has an action, it will be executed if the transition
+		 * is triggered. However, no state entry and exit actions will be triggered.</p> 
 		 */
 		def IState getTo()
 
