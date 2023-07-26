@@ -40,7 +40,8 @@ java {
     //withJavadocJar()
 }
 
-
+compileJava.options.encoding = "ISO-8859-1"
+compileTestJava.options.encoding = "ISO-8859-1"
 
 sourceSets {
     main.java.srcDirs = ['plugins/org.nanosite.tarski/src', 'plugins/org.nanosite.tarski/xtend-gen']
