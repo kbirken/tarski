@@ -31,7 +31,7 @@ import static extension org.nanosite.tarski.psm.checker.internal.ExecFSMSemantic
  */
 class ContractCheckResults {
 	
-	val final static traceProposals = true
+	val static traceProposals = true
 	
 	val IComponent component
 	val SemanticsChecker checker
