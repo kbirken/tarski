@@ -62,14 +62,6 @@ ext.additionalPomInfo = {
             distribution = "repo"
         }
     }
-    organization {
-        name = "itemis AG"
-        url = "https://www.itemis.com"
-    }
-    scm {
-        tag = GitBasedVersioning.getGitCommitHash()
-        url = "https://github.com/IETS3/iets3.core"
-    }
 }
 
 publishing {
