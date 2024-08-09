@@ -51,6 +51,26 @@ sourceSets {
     test.xtend.outputDir = 'tests/org.nanosite.tarski.tests/xtend-gen'
 }
 
+ext.additionalPomInfo = {
+    licenses {
+        // official SPDX identifier
+        // see https://spdx.org/licenses/ for list
+        license {
+            name = "MPL-2.0"
+	    url = "http://www.mozilla.org/MPL/2.0"
+            comments = "Mozilla Public License 2.0"
+            distribution = "repo"
+        }
+    }
+    organization {
+        name = "itemis AG"
+        url = "https://www.itemis.com"
+    }
+    scm {
+        tag = GitBasedVersioning.getGitCommitHash()
+        url = "https://github.com/IETS3/iets3.core"
+    }
+}
 
 publishing {
     repositories {
@@ -67,6 +87,7 @@ publishing {
     publications {
         maven(MavenPublication) {
             from components.java
+	    pom additionalPomInfo
         }
     }
 }
